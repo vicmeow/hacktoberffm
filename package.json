@@ -1,0 +1,46 @@
+{
+  "name": "hacktoberffm",
+  "version": "1.0.0",
+  "description": "Hacktoberfest Frankfurt",
+  "author": "vicbergquist",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "lint"
+  },
+  "lint-staged": {
+    "*.{js,vue}": "eslint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "nuxt": "^2.9.2",
+    "nuxt-sanity": "^0.0.8"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config": "^1.0.1",
+    "@nuxtjs/eslint-module": "^1.0.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.3.0",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-loader": "^3.0.0",
+    "eslint-plugin-nuxt": ">=0.4.2",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-vue": "^5.2.3",
+    "husky": "^2.6.0",
+    "lint-staged": "^8.2.1",
+    "node-sass": "^4.12.0",
+    "prettier": "^1.18.2",
+    "sanity": "^0.142.0",
+    "sanity-blocks-vue-component": "^0.1.0",
+    "sass-loader": "^8.0.0"
+  }
+}
