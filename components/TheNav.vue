@@ -20,9 +20,6 @@
           Register
         </nuxt-link>
       </nav>
-      <button class="btn-toggle" @click="$emit('click')">
-        <span>&#8592; Close</span>
-      </button>
     </div>
   </div>
 </template>
@@ -61,9 +58,10 @@ export default {
 
 <style scoped>
 .nav-wrapper {
-  max-width: 400px;
+  max-width: 350px;
   width: 100%;
   padding: 1rem 1rem;
+  flex-shrink: 1;
 }
 
 .logo {
@@ -132,15 +130,15 @@ export default {
 
 .nav-btn {
   position: relative;
-  color: #fff922;
+  color: #fff;
   text-decoration: none;
   align-self: center;
   font: inherit;
   font-weight: bold;
   font-size: 1.2rem;
   transition: all 0.3s linear;
-  background: #a11ec6;
-  padding: 0.25rem 1rem;
+  background: #ff00aa;
+  padding: 0.5rem 1.5rem;
   border-radius: 4px;
 }
 
@@ -154,7 +152,7 @@ export default {
   color: #ff00aa;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 768px) {
   .nav-wrapper {
     position: fixed;
     transform: translateX(-350px);

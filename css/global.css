@@ -56,11 +56,10 @@ img {
 h1,
 h2,
 h3 {
-  margin-bottom: 0;
+  margin: 0;
 }
 
-button,
-button:hover {
+button {
   font: inherit;
   outline: 0;
   color: inherit;
@@ -68,31 +67,41 @@ button:hover {
   background: 0;
 }
 
-.btn-toggle {
-  display: none;
-  padding: 0.5rem 1rem;
-  font-size: 0.8rem;
-  margin: 1rem;
-}
-
 .layout-wrapper {
   position: relative;
   display: flex;
-  flex-wrap: wrap;
 }
 
 .content-wrapper {
   max-width: 800px;
-  margin-top: 2rem;
+  padding: 2rem 1rem;
 }
 
-@media screen and (max-width: 500px) {
+.btn-toggle {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  margin: 0;
+  background: #ff00aa;
+  z-index: 1000;
+}
+
+.button-toggle:focus {
+  color: #ff00aa;
+  background: #fff922;
+}
+
+@media screen and (max-width: 768px) {
   body {
     font-size: 18px;
   }
-
-  .btn-toggle {
+  .layout-wrapper {
     display: block;
+  }
+  .btn-toggle {
+    display: initial;
   }
 }
 

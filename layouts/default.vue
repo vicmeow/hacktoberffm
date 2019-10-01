@@ -1,9 +1,10 @@
 <template>
   <div class="layout-wrapper">
-    <the-nav :is-open="isOpen" @click="isOpen = !isOpen" />
-    <button class="btn-toggle" @click="isOpen = !isOpen">
-      Menu ->
+    <button class="btn-toggle" tabIndex="0" @click="isOpen = !isOpen">
+      <span v-if="isOpen">&#8592; Close</span>
+      <span v-else>Menu -></span>
     </button>
+    <the-nav :is-open="isOpen" @click="isOpen = !isOpen" />
     <nuxt />
   </div>
 </template>
