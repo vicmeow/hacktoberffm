@@ -1,6 +1,6 @@
 <template>
   <div class="sponsor-card">
-    <div class="sponsor-logo">
+    <div v-if="sponsor.logo" class="sponsor-logo">
       <img :src="sponsor.logo" :alt="sponsor.logo" class="img-logo" />
     </div>
     <div class="sponsor-info">
@@ -57,5 +57,18 @@ export default {
 .sponsor-link:hover::after {
   color: #ff00aa;
   opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .sponsor-card {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .sponsor-logo {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
 }
 </style>
