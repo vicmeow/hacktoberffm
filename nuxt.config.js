@@ -1,3 +1,13 @@
+const options = {
+  url: 'https://hacktoberffm.de',
+  title: 'Hacktoberfest Frankfurt',
+  description:
+    'Hacktoberfest Frankfurt is a community event organised around Hacktoberfest, a month long celebration of open source software, where the Rhein Main tech community gets together for a night of food, drinks and hacking.',
+  img: 'https://hacktoberffm.de/twitter.png',
+  twitter: '@hacktoberffm',
+  themeColor: '#152347'
+}
+
 export default {
   mode: 'universal',
   /*
@@ -11,8 +21,25 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+        content: options.description
+      },
+      { name: 'author', content: options.url },
+      { name: 'publisher', content: options.url },
+      { name: 'apple-mobile-web-app-title', content: options.title },
+      { name: 'theme-color', content: options.themeColor },
+      // Fb
+      { name: 'og:title', content: options.title },
+      { name: 'og:description', content: options.description },
+      { name: 'og:type', content: 'website' },
+      { name: 'og:url', content: options.url },
+      { name: 'og:image', content: options.img },
+      // Twitter
+      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:site', content: options.twitter },
+      { name: 'twitter:creator', content: options.twitter },
+      { name: 'twitter:title', content: options.title },
+      { name: 'twitter:description', content: options.description },
+      { name: 'twitter:image', content: options.img }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
