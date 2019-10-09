@@ -68,7 +68,8 @@ export default {
   modules: ['@nuxtjs/pwa', 'nuxt-sanity'],
   sanity: {
     projectId: 'eu51wv3p', // required
-    dataset: 'production' // required
+    dataset: 'production', // required
+    useCdn: true
   },
   /*
    ** Build configuration
