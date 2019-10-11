@@ -8,7 +8,7 @@
 export default {
   asyncData({ $sanity }) {
     const query =
-      '{"content": *[_type == "content" && slug.current == "code-of-conduct"][0]{title, body}}'
+      '{"content": *[_type == "page" && slug.current == "code-of-conduct"][0]{title, body}}'
     return $sanity.fetch(query)
   }
 }

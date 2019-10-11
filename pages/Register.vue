@@ -21,7 +21,7 @@ export default {
     }
   },
   asyncData({ $sanity }) {
-    const query = `{"content": *[_type == "content" && slug.current == "register"][0]{
+    const query = `{"content": *[_type == "page" && slug.current == "register"][0]{
       body[]{
         ...,
         markDefs[]{

@@ -19,7 +19,7 @@ export default {
   },
   asyncData({ $sanity }) {
     const query =
-      '{"content": *[_type == "content" && slug.current == "leaderboard"][0]{body}}'
+      '{"content": *[_type == "page" && slug.current == "leaderboard"][0]{body}}'
     return $sanity.fetch(query)
   }
 }

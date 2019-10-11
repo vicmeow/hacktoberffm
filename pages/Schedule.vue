@@ -19,7 +19,7 @@ export default {
   },
   asyncData({ $sanity }) {
     const query =
-      '{"content": *[_type == "content" && slug.current == "agenda"][0]{body}}'
+      '{"content": *[_type == "page" && slug.current == "schedule"][0]{body}}'
     return $sanity.fetch(query)
   }
 }
