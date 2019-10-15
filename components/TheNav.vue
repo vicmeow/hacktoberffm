@@ -35,8 +35,8 @@ export default {
           slug: '/'
         },
         {
-          title: 'schedule',
-          slug: '/Schedule'
+          title: 'Schedule',
+          slug: '/schedule'
         },
         {
           title: 'Leaderboard',
