@@ -45,6 +45,7 @@
     "prettier": "^1.18.2",
     "sanity": "^0.142.0",
     "sanity-blocks-vue-component": "^0.1.0",
-    "sass-loader": "^8.0.0"
+    "sass-loader": "^8.0.0",
+    "vue-textarea-autosize": "^1.1.1"
   }
 }

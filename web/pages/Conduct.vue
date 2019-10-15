@@ -4,7 +4,6 @@
       <block-content
         v-if="type._type === 'blockContent'"
         :blocks="type.content"
-        :serializers="serializers"
       />
     </div>
   </div>

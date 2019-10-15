@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Code:300,400,500,600,700&display=swap');
+:root {
+  --main-navigation-color: #152347;
+  --main-navigation-color--inverted: #ebe8ef;
+  --body-bg: #152347;
+  --component-bg: #152347;
+  --brand-primary: #FF00AA;
+  --font-family-sans-serif: 'Fira Code';
+  --font-size-base: 17px;
+}
+
+.logo {
+  height: 100%;
+  max-height: 1.5rem;
+}

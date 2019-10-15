@@ -56,15 +56,7 @@ export default {
 }
 </script>
 
-<style scoped>
-.nav-wrapper {
-  max-width: 350px;
-  width: 100%;
-  padding: 1rem 1rem;
-  flex-shrink: 1;
-  z-index: 900;
-}
-
+<style>
 .logo {
   display: flex;
   max-width: 300px;
@@ -75,6 +67,16 @@ export default {
   display: block;
   width: 100%;
   height: 100%;
+}
+</style>
+
+<style scoped>
+.nav-wrapper {
+  max-width: 350px;
+  width: 100%;
+  padding: 1rem 1rem;
+  flex-shrink: 1;
+  z-index: 900;
 }
 
 .nav {

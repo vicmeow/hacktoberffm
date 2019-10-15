@@ -4,18 +4,14 @@
       <block-content
         v-if="type._type === 'blockContent'"
         :blocks="type.content"
+        :serializers="serializers"
       />
-      <sponsor-list v-if="type._type === 'list'" :sponsors="type.sponsors" />
     </div>
   </div>
 </template>
 
 <script>
-import SponsorList from '@/components/SponsorList'
 export default {
-  components: {
-    SponsorList
-  },
   data() {
     return {
       serializers: {
@@ -30,22 +26,20 @@ export default {
     }
   },
   asyncData({ $sanity }) {
-    const query = `{"blocks": *[_type == "page" && slug.current == "home"][0]{
-      _id,
-      content[]{
-        _type,
-        "sponsors": item[]->{name, description, "logo": logo.asset->url, link},
+    const query = `{
+      "blocks": *[_type == "page" && slug.current == "leaderboard"][0]{
         content[]{
           ...,
-          markDefs[]{
+          content[]{
             ...,
-            _type == "internalLink" => {
-              "slug": @.reference->slug
+            markDefs[]{
+              ...,
+              _type == "internalLink" => {
+                "slug": @.reference->slug
+                }
               }
             }
           }
-        }
-      }
     }`
     return $sanity.fetch(query)
   }

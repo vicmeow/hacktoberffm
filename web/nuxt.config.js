@@ -57,6 +57,7 @@ export default {
   plugins: [
     '~/plugins/block-content',
     '~/plugins/font-awesome',
+    '~/plugins/textarea-resize'
   ],
   /*
    ** Nuxt.js dev-modules
@@ -72,7 +73,8 @@ export default {
   sanity: {
     projectId: 'eu51wv3p', // required
     dataset: 'prod', // required
-    useCdn: true
+    token:
+      'skZI9vWGEJ74QfboOioTyIwSGXchaiO2yOyaQ8qrcc90LRDOHkepMlAHvmdVwtbVlFJtDNnpgWjfv6Xc1KmQ1jnr4otmM4xZrbPvWf15WIe8mJoaIVtPVuLg0nofxQ3eLbg7TRFD6XpN3l5oCWPp0TvJxzp1OZAdWo5UV17REuTTwcGNXTxf'
   },
   /*
    ** Build configuration

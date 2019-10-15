@@ -6,14 +6,17 @@
         :blocks="type.content"
         :serializers="serializers"
       />
-  </div>
+      <sponsor-list v-if="type._type === 'list'" :sponsors="type.sponsors" />
+    </div>
   </div>
 </template>
 
 <script>
 import SponsorList from '@/components/SponsorList'
 export default {
-  components: {},
+  components: {
+    SponsorList
+  },
   data() {
     return {
       serializers: {
@@ -22,16 +25,17 @@ export default {
             const { slug = {} } = mark
             const href = `/${slug.current}`
             return <a href={href}>{children}</a>
+          }
         }
       }
     }
-    }
   },
   asyncData({ $sanity }) {
-    const query = `{
-      "blocks": *[_type == "page" && slug.current == "leaderboard"][0]{
+    const query = `{"blocks": *[_type == "page" && slug.current == "home"][0]{
+      _id,
       content[]{
-        ...,
+        _type,
+        "sponsors": item[]->{name, description, "logo": logo.asset->url, link},
         content[]{
           ...,
           markDefs[]{
