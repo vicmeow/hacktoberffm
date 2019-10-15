@@ -72,9 +72,7 @@ export default {
   modules: ['@nuxtjs/pwa', 'nuxt-sanity'],
   sanity: {
     projectId: 'eu51wv3p', // required
-    dataset: 'prod', // required
-    token:
-      'skZI9vWGEJ74QfboOioTyIwSGXchaiO2yOyaQ8qrcc90LRDOHkepMlAHvmdVwtbVlFJtDNnpgWjfv6Xc1KmQ1jnr4otmM4xZrbPvWf15WIe8mJoaIVtPVuLg0nofxQ3eLbg7TRFD6XpN3l5oCWPp0TvJxzp1OZAdWo5UV17REuTTwcGNXTxf'
+    dataset: 'prod' // required
   },
   /*
    ** Build configuration
