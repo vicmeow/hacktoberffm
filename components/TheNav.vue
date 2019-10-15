@@ -3,7 +3,7 @@
     <div class="nav">
       <div class="logo">
         <nuxt-link to="/">
-          <img src="/logo.png" />
+          <img src="/logo.png" alt="hacktoberfest logo" />
         </nuxt-link>
       </div>
       <nav class="nav-links">

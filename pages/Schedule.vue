@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import TalkList from '@/components/TalkList'
+import TalkList from '@/components/talks/TalkList'
 export default {
   components: {
     TalkList

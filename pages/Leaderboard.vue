@@ -28,7 +28,8 @@ export default {
     }
   },
   asyncData({ $sanity }) {
-    const query = `{"blocks": *[_type == "page" && slug.current == "leaderboard"][0]{
+    const query = `{
+      "blocks": *[_type == "page" && slug.current == "leaderboard"][0]{
       content[]{
         ...,
         content[]{
