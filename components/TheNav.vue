@@ -62,7 +62,7 @@ export default {
   width: 100%;
   padding: 1rem 1rem;
   flex-shrink: 1;
-  z-index: 1000;
+  z-index: 900;
 }
 
 .logo {
