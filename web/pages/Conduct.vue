@@ -13,7 +13,7 @@
 export default {
   asyncData({ $sanity }) {
     const query =
-      '{"blocks": *[_type == "page" && slug.current == "code-of-conduct"][0]}'
+      '{"blocks": *[_type == "page" && slug.current == "conduct"][0]}'
     return $sanity.fetch(query)
   }
 }

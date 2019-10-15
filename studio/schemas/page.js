@@ -43,7 +43,7 @@ export default {
           leaderboard: '🏆',
           resources: '📚',
           register: '✍',
-          'code-of-conduct': '🤝'
+          conduct: '🤝'
         }
         return () => <span role="img" style={{fontSize: '2rem'}}>{emoji[type]}</span>
       }
