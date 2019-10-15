@@ -1,25 +1,47 @@
 <template>
   <div class="content-wrapper">
-    <block-content :blocks="content.body" :serializers="serializers" />
+    <div v-for="type in blocks.content" :key="type._id">
+      <block-content
+        v-if="type._type === 'blockContent'"
+        :blocks="type.content"
+        :serializers="serializers"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import SponsorList from '@/components/SponsorList'
 export default {
   components: {},
   data() {
     return {
       serializers: {
         marks: {
-          sponsors: SponsorList
+          internalLink: ({ children, mark }) => {
+            const { slug = {} } = mark
+            const href = `/${slug.current}`
+            return <a href={href}>{children}</a>
+          }
         }
       }
     }
   },
   asyncData({ $sanity }) {
-    const query =
-      '{"content": *[_type == "page" && slug.current == "resources"][0]{body}}'
+    const query = `{"blocks": *[_type == "page" && slug.current == "resources"][0]{
+      content[]{
+        ...,
+        content[]{
+          ...,
+          markDefs[]{
+            ...,
+            _type == "internalLink" => {
+              "slug": @.reference->slug
+              }
+            }
+          }
+        }
+      }
+    }`
     return $sanity.fetch(query)
   }
 }

@@ -31,6 +31,7 @@ export default {
   display: flex;
   margin-right: 1.5rem;
   max-width: 90px;
+  min-width: 90px;
   width: 100%;
 }
 

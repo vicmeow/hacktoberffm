@@ -1,6 +1,12 @@
 <template>
   <div class="content-wrapper">
-    <block-content :blocks="content.body" />
+    <div v-for="type in blocks.content" :key="type._id">
+      <block-content
+        v-if="type._type === 'blockContent'"
+        :blocks="type.content"
+        :serializers="serializers"
+      />
+    </div>
   </div>
 </template>
 
@@ -8,7 +14,7 @@
 export default {
   asyncData({ $sanity }) {
     const query =
-      '{"content": *[_type == "page" && slug.current == "code-of-conduct"][0]{title, body}}'
+      '{"blocks": *[_type == "page" && slug.current == "code-of-conduct"][0]}'
     return $sanity.fetch(query)
   }
 }

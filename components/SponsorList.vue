@@ -14,23 +14,6 @@ export default {
   components: {
     SponsorCard
   },
-  data() {
-    return {
-      sponsors: []
-    }
-  },
-  mounted() {
-    const query =
-      '*[_type == "sponsor"]{name, description, "logo": logo.asset->url, link}'
-    this.$sanity.fetch(query).then(result => {
-      this.sponsors = result
-    })
-  }
+  props: ['sponsors']
 }
 </script>
-
-<style scoped>
-.sponsor-list {
-  outline: 1px solid transparent;
-}
-</style>
