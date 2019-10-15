@@ -40,6 +40,7 @@ export default {
               }
             }
           }
+        }
     }`
     return $sanity.fetch(query)
   }
