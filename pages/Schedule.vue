@@ -6,13 +6,17 @@
         :blocks="type.content"
         :serializers="serializers"
       />
+      <talk-list v-if="type.title === 'talks list'" :talks="type.talks" />
     </div>
   </div>
 </template>
 
 <script>
+import TalkList from '@/components/TalkList'
 export default {
-  components: {},
+  components: {
+    TalkList
+  },
   data() {
     return {
       serializers: {
@@ -29,7 +33,10 @@ export default {
   asyncData({ $sanity }) {
     const query = `{"blocks": *[_type == "page" && slug.current == "schedule"][0]{
       content[]{
-        ...,
+        _type,
+        title,
+        _id,
+        "talks": item[]->{_id, title, type, description, language, "speaker": speaker->{name, bio, links, image, _id}},
         content[]{
           ...,
           markDefs[]{

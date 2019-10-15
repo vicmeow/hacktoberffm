@@ -75,6 +75,7 @@ button {
 .content-wrapper {
   max-width: 800px;
   padding: 2rem 1rem;
+  width: 100%;
 }
 
 .btn-toggle {

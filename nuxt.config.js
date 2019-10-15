@@ -54,7 +54,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/block-content'],
+  plugins: [
+    '~/plugins/block-content',
+    '~/plugins/font-awesome',
+  ],
   /*
    ** Nuxt.js dev-modules
    */
