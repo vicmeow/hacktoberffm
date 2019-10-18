@@ -80,9 +80,6 @@ export default {
     return $sanity.fetch(query)
   },
   mounted() {
-    if (!this.$auth.loggedIn) {
-      this.$router.push('/login')
-    }
     this.$store.dispatch('fetchUsers')
     if (!this.$store.state.isListeningUsers) {
       this.$store.dispatch('startListener', 'users')
