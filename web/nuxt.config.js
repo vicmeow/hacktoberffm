@@ -84,8 +84,8 @@ export default {
     plugins: ['~/plugins/auth.js'],
     strategies: {
       github: {
-        client_id: '66fc4c346e8159ab26be',
-        client_secret: '617057509aafaf837e925a32b0079cb6ae83f698'
+        client_id: process.env.GITHUB_ID,
+        client_secret: process.env.GITHUB_TOKEN
       }
     },
     redirect: {
