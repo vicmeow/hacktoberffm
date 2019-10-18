@@ -89,6 +89,7 @@ export default {
   methods: {
     loginGithub() {
       this.$auth.loginWith('github')
+      this.$store.dispatch('setAuthUser', this.$auth.user)
     },
     logoutGithub() {
       this.$auth.logout('github')
