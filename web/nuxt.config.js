@@ -97,7 +97,8 @@ export default {
   },
   sanity: {
     projectId: 'eu51wv3p', // required
-    dataset: 'prod' // required
+    dataset: 'prod', // required
+    token: process.env.SANITY_TOKEN
   },
   io: {
     sockets: [
