@@ -59,18 +59,11 @@ export default {
     return $sanity.fetch(query)
   },
   mounted() {
-    if (this.$auth.loggedIn) {
-      if (!this.$store.state.isListeningUsers) {
-        this.$store.dispatch('startListener', 'users')
-      }
-      // Open connection to server that checks for user updates
-      // this.socket1 = this.$nuxtSocket({
-      //   name: 'leaderboard',
-      //   channel: '/',
-      //   reconnection: false
-      // })
-      this.$store.dispatch('fetchUsers')
+    if (!this.$store.state.isListeningUsers) {
+      this.$store.dispatch('startListener', 'users')
     }
+
+    this.$store.dispatch('fetchUsers')
   }
 }
 </script>
