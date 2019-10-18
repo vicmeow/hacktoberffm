@@ -19,7 +19,7 @@
       <font-awesome-icon :icon="['fab', 'github']" />
       Logout
     </button>
-    <div v-if="this.$auth.isLoggedIn" class="leaderboard-list">
+    <div v-if="this.$auth.loggedIn" class="leaderboard-list">
       <leaderboard-item v-for="user in sorted" :user="user" :key="user._id" />
     </div>
   </div>
@@ -89,7 +89,6 @@ export default {
   methods: {
     loginGithub() {
       this.$auth.loginWith('github')
-      this.$store.dispatch('setAuthUser', this.$auth.user)
     },
     logoutGithub() {
       this.$auth.logout('github')

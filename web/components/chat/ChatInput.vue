@@ -145,7 +145,6 @@ export default {
         name: this.$auth.user.login,
         id: this.$auth.user.id
       }
-      this.$store.dispatch('setAuthUser', user)
       this.name.value = user.name
     }
   },
@@ -177,15 +176,13 @@ export default {
       this.hideComment = true
       // Send only if valid
       if (this.validateComment()) {
-        const chatUser = this.$store.state.authUser
         const comment = {
           _type: 'comment',
           name: this.name.value,
           content: this.comment.value,
           user: {
             _type: 'reference',
-            _ref: `user-${chatUser.id}`,
-            weak: true
+            _ref: `user-${this.$auth.user.id}`
           }
         }
         this.$sanity

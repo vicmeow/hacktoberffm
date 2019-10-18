@@ -1,3 +1,5 @@
+import sanity from '~/sanityListen'
+
 export const state = () => ({
   authUser: null,
   users: [],
@@ -60,7 +62,7 @@ export const actions = {
   },
   startUserListener({ dispatch, state }) {
     const query = '*[_type == "user"]'
-    return this.$sanity.listen(query).subscribe(result => {
+    return sanity.listen(query).subscribe(result => {
       const type = result.transition
       if (type === 'appear') {
         // Only add if a user is added and oesn't already exist
@@ -80,7 +82,7 @@ export const actions = {
   },
   startChatListener({ dispatch, state }) {
     const query = '*[_type == "comment"]'
-    return this.$sanity.listen(query).subscribe(result => {
+    return sanity.listen(query).subscribe(result => {
       const type = result.transition
       if (type === 'appear') {
         // Only add if a user is added and doesn't already exist
