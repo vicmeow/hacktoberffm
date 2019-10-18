@@ -97,7 +97,8 @@ export default {
       login: '/login',
       callback: '/leaderboard'
     },
-    localStorage: false
+    localStorage: false,
+    cookie: false
   },
   sanity: {
     projectId: 'eu51wv3p', // required
