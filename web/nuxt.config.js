@@ -95,7 +95,7 @@ export default {
       home: '/',
       logout: '/',
       login: '/login',
-      callback: '/callback'
+      callback: '/leaderboard'
     },
     localStorage: false
   },
