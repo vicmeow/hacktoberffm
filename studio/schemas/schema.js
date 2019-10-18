@@ -1,26 +1,27 @@
 // First, we must import the schema creator
-import createSchema from 'part:@sanity/base/schema-creator'
+import createSchema from "part:@sanity/base/schema-creator"
 
 // Then import schema types from any plugins that might expose them
-import schemaTypes from 'all:part:@sanity/base/schema-type'
-import person from './person'
-import sponsor from './sponsor'
-import resource from './resource'
-import page from './page'
-import speaker from './speaker'
-import talk from './talk'
+import schemaTypes from "all:part:@sanity/base/schema-type"
+import person from "./person"
+import sponsor from "./sponsor"
+import resource from "./resource"
+import page from "./page"
+import speaker from "./speaker"
+import talk from "./talk"
 
 // Objects
-import blockContent from './objects/blockContent'
-import list from './list'
+import blockContent from "./objects/blockContent"
+import list from "./list"
 
 // Chat
-import comment from './chat/comment'
+import comment from "./chat/comment"
+import user from "./user"
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
-  name: 'default',
+  name: "default",
   // Then proceed to concatenate our document type
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
@@ -33,6 +34,7 @@ export default createSchema({
     talk,
     blockContent,
     list,
-    comment
+    comment,
+    user
   ])
 })
