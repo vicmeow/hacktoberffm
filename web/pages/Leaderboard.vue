@@ -8,6 +8,14 @@
       />
     </div>
     <button
+      v-if="!$auth.loggedIn"
+      class="btn btn-register"
+      @click="loginGithub"
+    >
+      <font-awesome-icon :icon="['fab', 'github']" />
+      Login
+    </button>
+    <button
       v-if="$auth.loggedIn"
       class="btn btn-register"
       @click="logoutGithub"
@@ -72,22 +80,29 @@ export default {
     return $sanity.fetch(query)
   },
   mounted() {
+    if (!this.$auth.loggedIn) {
+      this.$router.push('/login')
+    }
+    this.$store.dispatch('fetchUsers')
     if (!this.$store.state.isListeningUsers) {
       this.$store.dispatch('startListener', 'users')
     }
-
-    if (this.$auth.loggedIn) {
-      this.$store.dispatch('checkIfUserExists', this.$auth.user)
-    }
-
-    this.$store.dispatch('fetchUsers')
   },
   methods: {
     loginGithub() {
-      this.$auth.loginWith('github')
+      this.$auth
+        .loginWith('github')
+        .then(() => {
+          this.$store.dispatch('checkIfUserExists', this.$auth.user)
+        })
+        .catch(e => {
+          console.log(e)
+        })
     },
     logoutGithub() {
-      this.$auth.logout('github')
+      this.$auth.logout().then(result => {
+        console.log(result)
+      })
     }
   }
 }

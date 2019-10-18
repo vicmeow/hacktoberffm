@@ -9,7 +9,7 @@
           <img class="logo-img" src="/logo.png" alt="hacktoberfest logo" />
         </nuxt-link>
       </div>
-      <chat-app :logo-height="logoHeight" />
+      <chat-app v-if="$auth.loggedIn" :logo-height="logoHeight" />
     </aside>
     <nuxt />
   </div>

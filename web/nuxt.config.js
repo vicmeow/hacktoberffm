@@ -89,10 +89,8 @@ export default {
       }
     },
     redirect: {
-      home: '/',
-      logout: '/',
-      login: '/login',
-      callback: '/leaderboard'
+      home: '/leaderboard',
+      callback: '/'
     }
   },
   sanity: {
