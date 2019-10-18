@@ -18,7 +18,7 @@
           <image
             width="100"
             height="100"
-            :xlink:href="imageBuilder(image)"
+            :xlink:href="url ? url : imageBuilder(image)"
           ></image>
         </pattern>
       </defs>
@@ -35,7 +35,7 @@
 import imageUrlBuilder from '@sanity/image-url'
 
 export default {
-  props: ['image', 'id'],
+  props: ['image', 'id', 'url'],
   computed: {
     imageUrl() {
       return `url('image-bg-${this.id}')`

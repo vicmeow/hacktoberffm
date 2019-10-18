@@ -10,7 +10,7 @@
     <div class="register-wrapper">
       <button class="btn btn-register" @click="loginGithub">
         <font-awesome-icon :icon="['fab', 'github']" />
-        Sign in with GitHub
+        Log in with GitHub
       </button>
     </div>
   </div>
@@ -37,7 +37,7 @@ export default {
     users: state => state.users
   }),
   asyncData({ $sanity }) {
-    const query = `{"blocks": *[_type == "page" && slug.current == "register"][0]{
+    const query = `{"blocks": *[_type == "page" && slug.current == "login"][0]{
       content[]{
         ...,
         content[]{

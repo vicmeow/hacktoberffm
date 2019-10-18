@@ -29,7 +29,7 @@ a:focus {
   outline: 0;
 }
 
-p a {
+p a, .inline-link {
   display: inline-block;
   color: inherit;
   font-weight: bold;
@@ -39,8 +39,8 @@ p a {
   transition: all 0.3s linear;
 }
 
-p a:hover,
-p a:focus {
+p a:hover, .inline-link:hover
+p a:focus, .inline-link:focus {
   border-color: #ff00aa;
 }
 

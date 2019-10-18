@@ -1,3 +1,5 @@
+if (process.env.NODE_ENV !== 'production') require('dotenv').config()
+
 const options = {
   url: 'https://hacktoberffm.de',
   title: 'Hacktoberfest Frankfurt',
@@ -69,14 +71,52 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/pwa', 'nuxt-sanity'],
+  modules: [
+    '@nuxtjs/pwa',
+    'nuxt-sanity',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth',
+    'nuxt-socket-io'
+  ],
+  axios: {
+    baseURL: 'https://api.github.com/'
+  },
+  auth: {
+    // Options
+    plugins: ['~/plugins/auth.js'],
+    strategies: {
+      github: {
+        client_id: process.env.GITHUB_ID,
+        client_secret: process.env.GITHUB_SECRET
+      }
+    },
+    redirect: {
+      home: '/',
+      logout: '/',
+      login: '/login',
+      callback: '/callback'
+    },
+    localStorage: false
+  },
   sanity: {
     projectId: 'eu51wv3p', // required
-    dataset: 'prod' // required
+    dataset: 'prod', // required
+    token: process.env.SANITY_TOKEN
   },
-  /*
-   ** Build configuration
-   */
+  io: {
+    sockets: [
+      {
+        name: 'leaderboard',
+        url: 'http://localhost:3002',
+        default: true,
+        vuex: {
+          mutations: [],
+          actions: ['updateUsers']
+        }
+      }
+    ]
+  },
   build: {
     /*
      ** You can extend webpack config here

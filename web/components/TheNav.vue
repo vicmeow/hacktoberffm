@@ -16,7 +16,7 @@
         >
           {{ link.title }}
         </nuxt-link>
-        <nuxt-link class="nav-btn" to="/register">
+        <nuxt-link v-if="!this.$auth.loggedIn" class="nav-btn" to="/register">
           Register
         </nuxt-link>
       </nav>
