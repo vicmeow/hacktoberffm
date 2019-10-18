@@ -24,7 +24,18 @@ export default {
     user: {
       type: Object,
       required: true,
-      default: () => {}
+      default: () => {
+        return {
+          name: '',
+          pr_count: 0,
+          avatar_url: '#',
+          latest_pr: {
+            url: '#',
+            title: '',
+            timestamp: ''
+          }
+        }
+      }
     }
   }
 }

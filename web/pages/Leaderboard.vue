@@ -8,7 +8,7 @@
       />
     </div>
     <div class="leaderboard-list">
-      <leaderboard-item v-for="user in users" :user="user" :key="user._id" />
+      <leaderboard-item v-for="user in sorted" :user="user" :key="user._id" />
     </div>
   </div>
 </template>
@@ -37,6 +37,11 @@ export default {
   computed: {
     users() {
       return this.$store.state.users
+    },
+    sorted() {
+      return this.$store.state.users
+        .slice()
+        .sort((a, b) => a.pr_count > b.pr_count)
     }
   },
   asyncData({ $sanity }) {
