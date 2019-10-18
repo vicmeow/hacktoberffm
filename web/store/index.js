@@ -41,14 +41,9 @@ export const mutations = {
 }
 
 export const actions = {
-  async login({ commit }) {
-    try {
-      const user = await this.$auth.loginWith('github')
-      console.log(user)
-      commit('')
-    } catch (e) {
-      console.log(e)
-    }
+  login({ commit }) {
+    commit('SUCCESS')
+    this.$auth.loginWith('github')
   },
   setAuthUser({ commit }, user) {
     commit('SET_AUTH_USER', user)
@@ -176,7 +171,12 @@ export const actions = {
 
     try {
       const userData = await this.$axios
-        .$get(`/search/issues?q=${buildQuery(user.name, 2019)}`)
+        .$get(
+          `https://api.github.com/search/issues?q=${buildQuery(
+            user.name,
+            2019
+          )}`
+        )
         // Get details we want about the user and their PRs
         .then(res => {
           const result = res.items

@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     loginGithub() {
-      this.$store.dispatch('login')
+      this.$auth.loginWith('github')
     }
   }
 }

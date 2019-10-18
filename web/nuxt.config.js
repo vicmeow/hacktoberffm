@@ -79,16 +79,13 @@ export default {
     '@nuxtjs/auth',
     'nuxt-socket-io'
   ],
-  axios: {
-    baseURL: 'https://api.github.com/'
-  },
   auth: {
     // Options
     plugins: ['~/plugins/auth.js'],
     strategies: {
       github: {
-        client_id: process.env.GITHUB_ID,
-        client_secret: process.env.GITHUB_SECRET
+        client_id: '66fc4c346e8159ab26be',
+        client_secret: '617057509aafaf837e925a32b0079cb6ae83f698'
       }
     },
     redirect: {
@@ -96,9 +93,7 @@ export default {
       logout: '/',
       login: '/login',
       callback: '/leaderboard'
-    },
-    localStorage: false,
-    cookie: false
+    }
   },
   sanity: {
     projectId: 'eu51wv3p', // required

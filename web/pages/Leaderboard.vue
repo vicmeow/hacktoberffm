@@ -7,11 +7,19 @@
         :serializers="serializers"
       />
     </div>
-    <button class="btn btn-register" @click="logoutGithub">
+    <button
+      v-if="!this.$auth.loggedIn"
+      class="btn btn-register"
+      @click="loginGithub"
+    >
+      <font-awesome-icon :icon="['fab', 'github']" />
+      Login
+    </button>
+    <button v-else class="btn btn-register" @click="logoutGithub">
       <font-awesome-icon :icon="['fab', 'github']" />
       Logout
     </button>
-    <div class="leaderboard-list">
+    <div v-if="this.$auth.isLoggedIn" class="leaderboard-list">
       <leaderboard-item v-for="user in sorted" :user="user" :key="user._id" />
     </div>
   </div>
@@ -79,8 +87,11 @@ export default {
     this.$store.dispatch('fetchUsers')
   },
   methods: {
+    loginGithub() {
+      this.$auth.loginWith('github')
+    },
     logoutGithub() {
-      this.$auth.logout()
+      this.$auth.logout('github')
     }
   }
 }
