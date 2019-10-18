@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     loginGithub() {
-      this.$auth.loginGithub()
+      this.$auth.loginWith('github')
     }
   }
 }

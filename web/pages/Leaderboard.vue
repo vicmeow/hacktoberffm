@@ -8,18 +8,14 @@
       />
     </div>
     <button
-      v-if="!this.$auth.loggedIn"
+      v-if="$auth.loggedIn"
       class="btn btn-register"
-      @click="loginGithub"
+      @click="logoutGithub"
     >
-      <font-awesome-icon :icon="['fab', 'github']" />
-      Login
-    </button>
-    <button v-else class="btn btn-register" @click="logoutGithub">
       <font-awesome-icon :icon="['fab', 'github']" />
       Logout
     </button>
-    <div v-if="this.$auth.loggedIn" class="leaderboard-list">
+    <div class="leaderboard-list">
       <leaderboard-item v-for="user in sorted" :user="user" :key="user._id" />
     </div>
   </div>
