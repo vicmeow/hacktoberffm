@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
   components: {},
   data() {
@@ -33,9 +32,6 @@ export default {
       }
     }
   },
-  computed: mapState({
-    users: state => state.users
-  }),
   asyncData({ $sanity }) {
     const query = `{"blocks": *[_type == "page" && slug.current == "login"][0]{
       content[]{
@@ -56,7 +52,7 @@ export default {
   },
   methods: {
     loginGithub() {
-      this.$store.dispatch('login')
+      this.$auth.loginGithub()
     }
   }
 }

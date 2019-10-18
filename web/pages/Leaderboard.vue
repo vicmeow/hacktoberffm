@@ -7,6 +7,10 @@
         :serializers="serializers"
       />
     </div>
+    <button class="btn btn-register" @click="logoutGithub">
+      <font-awesome-icon :icon="['fab', 'github']" />
+      Logout
+    </button>
     <div class="leaderboard-list">
       <leaderboard-item v-for="user in sorted" :user="user" :key="user._id" />
     </div>
@@ -68,7 +72,16 @@ export default {
       this.$store.dispatch('startListener', 'users')
     }
 
+    if (this.$auth.loggedIn) {
+      this.$store.dispatch('checkIfUserExists', this.$auth.user)
+    }
+
     this.$store.dispatch('fetchUsers')
+  },
+  methods: {
+    logoutGithub() {
+      this.$auth.logout()
+    }
   }
 }
 </script>
