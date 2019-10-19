@@ -16,7 +16,12 @@
 
 <script>
 export default {
-  props: ['sponsor']
+  props: {
+    sponsor: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>
 

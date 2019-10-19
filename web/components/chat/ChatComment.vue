@@ -26,11 +26,11 @@ export default {
 
 <style scoped>
 .chat-comment {
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 .comment-meta {
-  font-size: 0.9rem;
+  font-size: 0.9em;
   opacity: 0.9;
 }
 </style>

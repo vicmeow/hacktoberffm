@@ -7,12 +7,7 @@
         :serializers="serializers"
       />
     </div>
-    <div class="register-wrapper">
-      <button class="btn btn-register" @click="loginGithub">
-        <font-awesome-icon :icon="['fab', 'github']" />
-        Sign in with GitHub
-      </button>
-    </div>
+    <div class="register-wrapper"></div>
   </div>
 </template>
 
@@ -53,12 +48,6 @@ export default {
       }
     }`
     return $sanity.fetch(query)
-  },
-  methods: {
-    loginGithub() {
-      this.$auth.loginWith('github')
-      this.$store.dispatch('setAuthUser', this.$auth.user)
-    }
   }
 }
 </script>

@@ -14,6 +14,11 @@ export default {
   components: {
     SponsorCard
   },
-  props: ['sponsors']
+  props: {
+    sponsors: {
+      type: Array,
+      required: true
+    }
+  }
 }
 </script>

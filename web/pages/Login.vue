@@ -1,16 +1,10 @@
 <template>
   <div class="content-wrapper">
-    <div v-for="type in blocks.content" :key="type._id">
-      <block-content
-        v-if="type._type === 'blockContent'"
-        :blocks="type.content"
-        :serializers="serializers"
-      />
-    </div>
+    <h1>Login</h1>
     <div class="register-wrapper">
-      <button class="btn btn-register" @click="loginGithub">
+      <button v-if="!$auth.loggedIn" class="btn btn-register" @click="login">
         <font-awesome-icon :icon="['fab', 'github']" />
-        Log in with GitHub
+        Login
       </button>
     </div>
   </div>
@@ -18,9 +12,11 @@
 
 <script>
 export default {
+  middleware: ['auth'],
   components: {},
   data() {
     return {
+      error: null,
       serializers: {
         marks: {
           internalLink: ({ children, mark }) => {
@@ -51,8 +47,10 @@ export default {
     return $sanity.fetch(query)
   },
   methods: {
-    loginGithub() {
-      this.$auth.loginWith('github')
+    login() {
+      this.$auth.loginWith('github').catch(e => {
+        console.log(e)
+      })
     }
   }
 }

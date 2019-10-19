@@ -24,7 +24,12 @@
 
 <script>
 export default {
-  props: ['bio'],
+  props: {
+    bio: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       isOpen: true,

@@ -1,5 +1,9 @@
 <template>
   <div class="leaderboard-wrapper">
+    <button v-if="$auth.loggedIn" class="btn btn-register" @click="logout">
+      <font-awesome-icon :icon="['fab', 'github']" />
+      Logout
+    </button>
     <div v-for="type in blocks.content" :key="type._id">
       <block-content
         v-if="type._type === 'blockContent'"
@@ -7,24 +11,8 @@
         :serializers="serializers"
       />
     </div>
-    <button
-      v-if="!$auth.loggedIn"
-      class="btn btn-register"
-      @click="loginGithub"
-    >
-      <font-awesome-icon :icon="['fab', 'github']" />
-      Login
-    </button>
-    <button
-      v-if="$auth.loggedIn"
-      class="btn btn-register"
-      @click="logoutGithub"
-    >
-      <font-awesome-icon :icon="['fab', 'github']" />
-      Logout
-    </button>
     <div class="leaderboard-list">
-      <leaderboard-item v-for="user in sorted" :user="user" :key="user._id" />
+      <leaderboard-item v-for="user in sorted" :key="user._id" :user="user" />
     </div>
   </div>
 </template>
@@ -32,7 +20,7 @@
 <script>
 import LeaderboardItem from '@/components/LeaderboardItem'
 export default {
-  middleware: 'auth',
+  middleware: ['auth'],
   layout: 'chat',
   components: {
     LeaderboardItem
@@ -80,26 +68,24 @@ export default {
     return $sanity.fetch(query)
   },
   mounted() {
-    this.$store.dispatch('fetchUsers')
-    if (!this.$store.state.isListeningUsers) {
-      this.$store.dispatch('startListener', 'users')
+    if (this.$auth.loggedIn) {
+      this.$store.dispatch('setUser', this.$auth.user)
+      this.$store.dispatch('fetchUsers')
+      if (!this.$store.state.isListeningUsers) {
+        this.$store.dispatch('startListener', 'users')
+      }
     }
   },
   methods: {
-    loginGithub() {
+    logout() {
       this.$auth
-        .loginWith('github')
+        .logout()
         .then(() => {
-          this.$store.dispatch('checkIfUserExists', this.$auth.user)
+          console.log('logged out!')
         })
         .catch(e => {
-          console.log(e)
+          console.log('oops', e)
         })
-    },
-    logoutGithub() {
-      this.$auth.logout().then(result => {
-        console.log(result)
-      })
     }
   }
 }

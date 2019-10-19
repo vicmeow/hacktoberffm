@@ -1,5 +1,10 @@
 if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 
+const client = {
+  id: '66fc4c346e8159ab26be',
+  secret: '617057509aafaf837e925a32b0079cb6ae83f698'
+}
+
 const options = {
   url: 'https://hacktoberffm.de',
   title: 'Hacktoberfest Frankfurt',
@@ -11,7 +16,7 @@ const options = {
 }
 
 export default {
-  mode: 'spa',
+  mode: 'universal',
   /*
    ** Headers of the page
    */
@@ -80,17 +85,20 @@ export default {
     'nuxt-socket-io'
   ],
   auth: {
-    // Options
-    plugins: ['~/plugins/auth.js'],
+    redirect: {
+      callback: '/callback'
+    },
     strategies: {
       github: {
-        client_id: process.env.GITHUB_ID,
-        client_secret: process.env.GITHUB_TOKEN
+        client_id:
+          process.env.NODE_ENV !== 'production'
+            ? client.id
+            : process.env.GITHUB_CLIENT_ID,
+        client_secret:
+          process.env.NODE_ENV !== 'production'
+            ? client.secret
+            : process.env.GITHUB_CLIENT_SECRET
       }
-    },
-    redirect: {
-      home: '/leaderboard',
-      callback: '/'
     }
   },
   sanity: {

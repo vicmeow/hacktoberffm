@@ -64,7 +64,7 @@ export default {
   data() {
     return {
       name: {
-        value: null,
+        value: this.$auth.loggedIn ? this.$auth.user.login : null,
         min: 5,
         max: 20,
         error: null
@@ -79,7 +79,7 @@ export default {
       isSent: false,
       hasSubmitError: false,
       hideComment: false,
-      textareaHeight: '2rem'
+      textareaHeight: '2em'
     }
   },
   computed: {
@@ -139,15 +139,7 @@ export default {
       }
     }
   },
-  mounted() {
-    if (this.$auth.loggedIn) {
-      const user = {
-        name: this.$auth.user.login,
-        id: this.$auth.user.id
-      }
-      this.name.value = user.name
-    }
-  },
+  mounted() {},
   methods: {
     setHeight(e) {
       if (e && e.keyCode) {
@@ -170,10 +162,9 @@ export default {
       // Send status for animation
       this.isSent = true
       this.$emit('scroll')
+      const commentStored = this.comment
       // Submit status for continous validation
       this.isSubmitted = true
-      // hide comment input
-      this.hideComment = true
       // Send only if valid
       if (this.validateComment()) {
         const comment = {
@@ -188,13 +179,14 @@ export default {
         this.$sanity
           .create(comment)
           .then(() => {
-            this.textareaHeight = '2rem'
+            this.textareaHeight = '2em'
             this.resetComment()
             this.hideComment = false
             this.isSent = false
             this.isSubmitted = false
           })
           .catch(error => {
+            this.comment = commentStored
             this.hideComment = false
             this.isSent = false
             this.hasSubmitError = true
@@ -242,7 +234,7 @@ export default {
 
 <style scoped>
 .chat-input {
-  padding: 1rem;
+  padding: 1em;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -277,7 +269,7 @@ export default {
 }
 
 .input-name {
-  font-size: 0.85rem;
+  font-size: 0.9em;
   opacity: 0.5;
 }
 
@@ -295,12 +287,12 @@ export default {
 
 .error-message {
   color: red;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.5em;
 }
 
 .char-count,
 .error-message {
-  font-size: 0.7rem;
+  font-size: 0.7em;
   opacity: 0.8;
 }
 
@@ -321,7 +313,7 @@ export default {
   transition: all 0.1s linear;
   display: block;
   width: 100%;
-  margin-right: 1rem;
+  margin-right: 1em;
   padding: 0;
 }
 

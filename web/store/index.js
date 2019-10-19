@@ -43,12 +43,15 @@ export const mutations = {
 }
 
 export const actions = {
-  login({ commit }) {
-    commit('SUCCESS')
-    this.$auth.loginWith('github')
-  },
-  setAuthUser({ commit }, user) {
-    commit('SET_AUTH_USER', user)
+  setUser({ commit, dispatch }, user) {
+    const authUser = {
+      name: user.login,
+      github_id: user.id,
+      avatar_url: user.avatar_url,
+      profile_url: user.html_url
+    }
+    commit('SET_AUTH_USER', authUser)
+    dispatch('checkIfUserExists', authUser)
   },
   startListener({ commit, dispatch }, type) {
     if (type === 'users') {
@@ -139,12 +142,14 @@ export const actions = {
   },
   // STEP 1
   checkIfUserExists({ dispatch }, user) {
+    console.log('check', user)
     const query = '*[_type == "user" && _id == $id]{_id}'
-    const params = { id: `user-${user.id}` }
+    const params = { id: `user-${user.github_id}` }
     this.$sanity
       .fetch(query, params)
       .then(result => {
         if (!result.length) {
+          console.log('1. User does not exist, assemble')
           return dispatch('assembleUser', user)
         }
         console.log('user exists, stop.')
@@ -157,12 +162,10 @@ export const actions = {
   assembleUser({ dispatch }, user) {
     const assembled = {
       _type: 'user',
-      _id: `user-${user.id}`,
-      name: user.login,
-      github_id: user.id,
-      avatar_url: user.avatar_url,
-      profile_url: user.html_url
+      _id: `user-${user.github_id}`,
+      ...user
     }
+    console.log('2. assemble complete, get data')
     return dispatch('fetchGithubData', assembled)
   },
   // STEP 3
@@ -172,7 +175,7 @@ export const actions = {
       `-label:invalid+created:${searchYear}-09-30T00:00:00-12:00..${searchYear}-10-31T23:59:59-12:00+type:pr+is:public+author:${username}`
 
     try {
-      const userData = await this.$axios
+      const githubData = await this.$axios
         .$get(
           `https://api.github.com/search/issues?q=${buildQuery(
             user.name,
@@ -182,8 +185,7 @@ export const actions = {
         // Get details we want about the user and their PRs
         .then(res => {
           const result = res.items
-          // Same structure as in Sanity schema
-          const details = {
+          return {
             pr_count: res.total_count,
             latest_pr: {
               title: result[0].title,
@@ -191,10 +193,14 @@ export const actions = {
               timestamp: result[0].created_at
             }
           }
-          return details
         })
       // Create user in Sanity
-      return dispatch('createUserDoc', { ...user, ...userData })
+      const newUser = {
+        ...user,
+        ...githubData
+      }
+      console.log('3. Data fetched, create')
+      return dispatch('createUserDoc', newUser)
     } catch (error) {
       console.log(error)
     }
@@ -204,7 +210,7 @@ export const actions = {
     this.$sanity
       .create(user)
       .then(result => {
-        console.log('created', result._id)
+        console.log('4. User created', result._id)
         commit('SUCCESS')
       })
       .catch(e => {

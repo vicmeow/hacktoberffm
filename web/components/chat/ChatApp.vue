@@ -54,6 +54,7 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column-reverse;
+  font-size: 0.95rem;
 }
 
 .chat-feed {
@@ -63,7 +64,7 @@ export default {
 }
 
 .chat-input-wrapper {
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.5em;
   background: #121d3a;
   border-radius: 5px;
   width: 100%;

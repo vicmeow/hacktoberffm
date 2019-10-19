@@ -9,7 +9,7 @@
           <img class="logo-img" src="/logo.png" alt="hacktoberfest logo" />
         </nuxt-link>
       </div>
-      <chat-app v-if="$auth.loggedIn" :logo-height="logoHeight" />
+      <chat-app :logo-height="logoHeight" />
     </aside>
     <nuxt />
   </div>
@@ -30,14 +30,6 @@ export default {
     setTimeout(() => {
       this.logoHeight = this.$refs.logoHeight.scrollHeight
     }, 100)
-    if (this.$auth.loggedIn) {
-      const user = {
-        name: this.$auth.user.login,
-        id: this.$auth.user.id
-      }
-      this.$store.dispatch('setAuthUser', user)
-      this.$store.dispatch('checkIfUserExists', this.$auth.user)
-    }
   }
 }
 </script>
@@ -51,7 +43,7 @@ export default {
   position: relative;
   display: flex;
   flex-direction: column;
-  max-width: 400px;
+  max-width: 350px;
   width: 100%;
   height: 100%;
   overflow: hidden;

@@ -51,7 +51,7 @@ export default {
 <style scoped>
 .chat-feed {
   position: relative;
-  padding: 0 1rem;
+  padding: 0 1em;
   overflow: auto;
   height: 100%;
 }

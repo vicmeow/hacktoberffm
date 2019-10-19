@@ -12,8 +12,22 @@
 <script>
 export default {
   asyncData({ $sanity }) {
-    const query =
-      '{"blocks": *[_type == "page" && slug.current == "conduct"][0]}'
+    const query = `{
+      "blocks": *[_type == "page" && slug.current == "conduct"][0]{
+        content[]{
+          ...,
+          content[]{
+            ...,
+            markDefs[]{
+              ...,
+              _type == "internalLink" => {
+                "slug": @.reference->slug
+                }
+              }
+            }
+          }
+        }
+      }`
     return $sanity.fetch(query)
   }
 }

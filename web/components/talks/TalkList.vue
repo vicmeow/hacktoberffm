@@ -10,6 +10,11 @@ export default {
   components: {
     TalkItem
   },
-  props: ['talks']
+  props: {
+    talks: {
+      type: Array,
+      required: true
+    }
+  }
 }
 </script>

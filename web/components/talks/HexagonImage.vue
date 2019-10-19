@@ -35,7 +35,20 @@
 import imageUrlBuilder from '@sanity/image-url'
 
 export default {
-  props: ['image', 'id', 'url'],
+  props: {
+    image: {
+      type: Object,
+      default: () => {}
+    },
+    id: {
+      type: String,
+      default: ''
+    },
+    url: {
+      type: [String, Boolean],
+      default: false
+    }
+  },
   computed: {
     imageUrl() {
       return `url('image-bg-${this.id}')`

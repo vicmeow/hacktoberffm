@@ -16,9 +16,6 @@
         >
           {{ link.title }}
         </nuxt-link>
-        <nuxt-link v-if="!this.$auth.loggedIn" class="nav-btn" to="/register">
-          Register
-        </nuxt-link>
       </nav>
     </div>
   </div>
@@ -26,7 +23,12 @@
 
 <script>
 export default {
-  props: ['isOpen'],
+  props: {
+    isOpen: {
+      type: Boolean,
+      required: true
+    }
+  },
   data() {
     return {
       nav: [
