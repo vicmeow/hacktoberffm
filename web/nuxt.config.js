@@ -87,8 +87,7 @@ export default {
   auth: {
     redirect: {
       login: '/login',
-      home: '/leaderboard',
-      callback: '/callback'
+      home: '/leaderboard'
     },
     strategies: {
       github: {
