@@ -85,6 +85,9 @@ export default {
     'nuxt-socket-io'
   ],
   auth: {
+    redirect: {
+      callback: '/leaderboard'
+    },
     strategies: {
       github: {
         client_id:
